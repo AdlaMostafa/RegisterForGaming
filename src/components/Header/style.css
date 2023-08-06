@@ -1,0 +1,24 @@
+.head {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 20px 0 0 1360px;
+}
+.head img {
+  width: 60px;
+  height: 60px;
+  margin-left: 40px;
+}
+.headText {
+  margin: 0 -10px 0 17px;
+}
+
+.head .welcome-back {
+  text-align: right;
+  font-size: large;
+  color: white;
+  margin: 5px -15px 0 10px;
+}
+
+.jenny {
+  display: block;
+}
