@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap");
+
+.Parent2 {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+.LeftContent {
+  width: 40%;
+  margin-left: -470px;
+}
+
+.LeftContent img {
+  width: 98%;
+  height: 874px;
+  object-fit: initial;
+  height: 790px;
+  margin-left: -790px;
+}
+
+.BlueDiv {
+  flex-grow: 1;
+  background: rgba(21, 101, 216, 1);
+  opacity: 0.9;
+  width: 20px;
+  height: 863px;
+  margin: -72px 120px 0px 0px;
+  position: relative;
+}
+.BlueDiv .WLogo {
+  position: absolute;
+  margin-top: 25%;
+  margin-left: 15%;
+}
+.BlueDiv .Dots {
+  position: absolute;
+  top: 31%;
+  left: 70%;
+}
+.BlueDiv .Qoute2 {
+  position: absolute;
+  top: 42%;
+  left: 12%;
+}
+.BlueDiv .Para p {
+  position: absolute;
+  top: 44%;
+  left: 12%;
+  font-family: "Inter";
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 38px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+.BlueDiv .text2 p {
+  position: absolute;
+  bottom: 26%;
+  left: 12%;
+  font-family: " Inter";
+  font-size: 20px;
+  font-weight: 400;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+.BlueDiv .Vector2 {
+  position: absolute;
+  bottom: 18%;
+  right: 10%;
+}
+.BlueDiv .Back button {
+  position: absolute;
+  bottom: 84%;
+  left: 110%;
+  background: none;
+  border: none;
+  font-family: "Inter";
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  color: rgba(134, 146, 166, 1);
+}
+.BlueDiv .Arrow {
+  position: absolute;
+  bottom: 83.5%;
+  left: 105%;
+  cursor: pointer;
+}
+.RightContent2 {
+  width: 30%;
+  overflow-y: auto;
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  max-height: 100%;
+  margin-top: 55px;
+}
+.RightContent2 h1 {
+  font-family: "Inter";
+  font-size: 30px;
+  font-weight: 700;
+  text-align: left;
+  margin-top: 200px;
+  margin-left: -230px;
+  color: rgba(0, 0, 0, 1);
+}
+.RightContent2 p {
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: -5px;
+  margin-left: -260px;
+  letter-spacing: 0.1px;
+  text-align: left;
+  color: rgba(134, 146, 166, 1);
+}
+.RightContent .Form2 {
+  width: 100%;
+  margin-left: 90px;
+  margin-top: 10px;
+}
+
+.Form2 .NameDev,
+.Form2 .EmailDev,
+.Form2 .PhoneDev,
+.Form2 .PassWordDev,
+.Form2 .PassWordRep {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  margin: 20px 50px 0px -190px;
+  border-radius: 6px;
+  border: 1px;
+}
+
+.Form2 .NameDev label,
+.Form2 .EmailDev label,
+.Form2 .PhoneDev label,
+.Form2 .PassWordDev label,
+.Form2 .PassWordRep label {
+  text-align: start;
+  margin-bottom: 20px;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: left;
+  color: rgba(105, 111, 121, 1);
+  width: 100%;
+}
+
+.Form2 .NameDev input,
+.Form2 .EmailDev input,
+.Form2 .PhoneDev input,
+.Form2 .PassWordDev input,
+.Form2 .PassWordRep input {
+  width: 380px;
+  height: 50px;
+  margin-top: -10px;
+  border-radius: 6px;
+  border: 1px solid rgba(134, 146, 166, 1);
+  padding-left: 10px;
+}
+
+.Form2 .NameDev input::placeholder,
+.Form2 .EmailDev input::placeholder,
+.Form2 .PhoneDev input::placeholder,
+.Form2 .PassWordDev input::placeholder,
+.Form2 .PassWordRep input::placeholder {
+  margin-left: 35px;
+}
+.Form2 .Check {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: left;
+  color: rgba(105, 111, 121, 1);
+  margin: 20px 50px 0px -190px;
+}
+
+.Form2 .SubButt2 {
+  margin: 20px 50px 0px -190px;
+}
+
+.Form2 .SubButt2 button {
+  width: 103%;
+  height: 55px;
+  border-radius: 6px;
+  border: 1px solid rgba(134, 146, 166, 1);
+  background-color: rgb(21, 101, 216);
+  color: aliceblue;
+  font-weight: bold;
+}
+.Form2 .OR {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  margin-top: 30px;
+  border: 1px;
+}
+
+.Form2 .OR p {
+  font-family: "Inter";
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  color: rgba(186, 186, 186, 1);
+}
+.Form2 .LogButt2 {
+  margin: 20px 50px 0px -190px;
+}
+
+.Form2 .LogButt2 button {
+  width: 103%;
+  height: 55px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 1);
+  color: rgb(31, 37, 43);
+  font-weight: bold;
+  box-shadow: 0px 4px 10px 0px rgba(253, 250, 250, 0.08);
+}
+.strenght {
+  height: 5px;
+  margin-bottom: -15px;
+  border: 1px solid rgb(92, 108, 1);
+  width: 387px;
+}
+
+.strenght.high {
+  background-color: yellow;
+  width: 387px;
+}
+
+.strenght.medium {
+  width: 198.5px;
+  background-color: #ffc107; 
+}
+
+.strenght.low {
+  width: 99.25px;
+  background-color: #f44336;
+}
