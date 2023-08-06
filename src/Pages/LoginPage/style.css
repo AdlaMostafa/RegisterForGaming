@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap");
+
+.Parent {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.LeftContent {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px;
+  margin-left: -500px;
+}
+
+.LeftContent .Logo img {
+  width: 300px;
+  height: 80px;
+  padding-right: -200px;
+  margin: -120px 0px 280px 600px;
+}
+
+.LeftContent .Quote1 {
+  position: absolute;
+  width: 180px;
+  height: 21px;
+  top: 150px;
+  left: 104px;
+  font-family: 'Gayathri';
+  font-size: 85px;
+  font-weight: 700;
+  line-height: 210px;
+  text-align: left;
+  color: rgba(186, 186, 186, 1);
+}
+
+.LeftContent .LeftPar {
+  width: 473px;
+  margin: -95px 0px 0px 800px;
+  text-align: left;
+}
+
+.LeftContent .LeftPar p {
+  font-family: "Inter";
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 38px;
+  color: rgba(105, 111, 121, 1);
+}
+
+.LeftContent .par2 {
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 38px;
+  color: rgba(105, 111, 121, 1);
+  margin-top: 40px;
+}
+
+.LeftContent .Stamp {
+  position: absolute;
+  margin:180px 0px 0px 650px;
+}
+.LeftContent .Stamp img {
+  width: 340px;
+  height: 425px;
+  margin-left: 190px;
+}
+.RightContent {
+  width: 60%;
+  overflow-y: auto;
+  padding: 100px;
+  display: flex;
+  margin-left: 470px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.RightContent h1 {
+  margin-top: 250px;
+}
+
+.RightContent .RightTitle {
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  margin: -20px 0px 20px 0px;
+  color: rgba(134, 146, 166, 1);
+}
+
+.RightContent .Icons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 25px;
+  align-items: center;
+}
+
+.RightContent .Icons .Google,
+.RightContent .Icons .Twitter,
+.RightContent .Icons .Linked,
+.RightContent .Icons .Git {
+  background-color: rgb(251, 251, 251);
+  width: 35px;
+  height: 35px;
+  border-radius: 3px;
+  box-shadow: 5px;
+  margin-left: 26px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08);
+}
+
+.RightContent .OR {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  margin-top: 30px;
+  border: 1px;
+}
+
+.RightContent .OR p {
+  font-family: "Inter";
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  color: rgba(186, 186, 186, 1);
+}
+
+.RightContent .FormParent {
+  width: 60%;
+  margin-left: 60px;
+}
+
+.RightContent .NameDev,
+.RightContent .EmailDev,
+.RightContent .PhoneDev,
+.RightContent .PassWordDev {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+  border-radius: 6px;
+  border: 1px;
+}
+.RightContent .PassWordDev{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  position: relative;
+}
+.RightContent .PassWordDev img{
+  position: absolute;
+  margin-top: 50px;
+  align-items: center;
+  margin-left: 160px;
+  width: 20px;
+  height: 16px;
+}
+/* .RightContent .PassWordDev .password-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+} */
+
+/* .RightContent .PassWordDev input[type='password'] {
+  padding-right: 30px; /* Leave space for the toggle icon */
+
+
+.RightContent .PassWordDev .password-toggle {
+  position: absolute;
+  right: 8px;
+  cursor: pointer;
+}
+
+.RightContent .PassWordDev .password-toggle img {
+  width: 20px;
+  height: 16px;
+}
+
+.RightContent .NameDev label,
+.RightContent .EmailDev label,
+.RightContent .PhoneDev label,
+.RightContent .PassWordDev label {
+  text-align: start;
+  margin-bottom: 20px;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: left;
+  color: rgba(105, 111, 121, 1);
+  width: 100%;
+}
+
+.RightContent .NameDev input,
+.RightContent .EmailDev input,
+.RightContent .PhoneDev input,
+.RightContent .PassWordDev input {
+  width: 100%;
+  height: 50px;
+  margin-top: -10px;
+  border-radius: 6px;
+  border: 1px solid rgba(134, 146, 166, 1);
+  padding-left: 10px;
+}
+
+.RightContent .NameDev input::placeholder,
+.RightContent .EmailDev input::placeholder,
+.RightContent .PhoneDev input::placeholder,
+.RightContent .PassWordDev input::placeholder {
+  margin-left: 35px;
+}
+
+.RightContent .SubButt {
+  margin-top: 20px;
+}
+
+.RightContent .SubButt button {
+  width: 103%;
+  height: 55px;
+  border-radius: 6px;
+  border: 1px solid rgba(134, 146, 166, 1);
+  background-color: rgb(21, 101, 216);
+  color: aliceblue;
+  font-weight: bold;
+}
+.Ques {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.Ques p {
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: left;
+  color: rgba(105, 111, 121, 1);
+}
+.Ques button {
+  border: none;
+  background: none;
+  color: blue;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+}
