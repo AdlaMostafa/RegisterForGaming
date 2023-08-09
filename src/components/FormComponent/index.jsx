@@ -3,9 +3,20 @@ import ButtonComponent from '../ButtonComponent';
 import View from '../../Images/eye.png';
 import Hide from '../../Images/Hide.png';
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../../router/path';
+import * as yup from 'yup'; // Import yup
+
+const schema = yup.object().shape({
+  userName: yup.string().required('Your Name is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
+  phone: yup.string().required('Phone Number is required'),
+  password: yup.string().required('Password is required'),
+});
 
 const FormComponent = () => {
-  const {isLoading} = useAuthContext();
+  const { isLoading } = useAuthContext();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     userName: '',
     email: '',
@@ -32,23 +43,30 @@ const FormComponent = () => {
     }));
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // Check if all fields are completed
-    if (!password || !userName || !email || !phone) {
+    try {
+      await schema.validate(formData, { abortEarly: false }); // Validate using yup schema
+
       setFormData((prevFormData) => ({
         ...prevFormData,
-        error: 'Please complete all fields',
+        error: '',
       }));
-      return;
-    }
 
-    // Clear error state if validation passes
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      error: '',
-    }));
+      navigate("/");
+    } catch (validationError) {
+      const validationErrors = validationError.inner.reduce((errors, error) => {
+        errors[error.path] = error.message;
+        return errors;
+      }, {});
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        error: 'Please fix the errors in the form',
+        ...validationErrors,
+      }));
+    }
   };
 
   return (
@@ -82,7 +100,7 @@ const FormComponent = () => {
         <label htmlFor='phone'>Your Phone Number</label>
         <input
           required
-          type='number'
+          type='text'
           id='phone'
           name='phone'
           placeholder='Write your phone number'
@@ -110,7 +128,7 @@ const FormComponent = () => {
       </div>
 
       <div className='SubButt'>
-        <ButtonComponent text={ isLoading ? 'Loading ...':'Login' } type='submit' />
+        <button type='submit'>{isLoading ? 'Loading ...' : 'Login'}</button>
       </div>
       {error && <p className='Error' style={{ color: 'red', marginLeft: '-2px' }}>{error}</p>}
     </form>
