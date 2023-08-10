@@ -1,6 +1,6 @@
 import React from "react";
 import ImageComponent from "../../components/ImageComponent";
-
+import Line from '../../Images/leftLine.png'
 import man from "../../Images/man.png";
 import animal from '../../Images/animal.png'
 import animalLogo from '../../Images/animallogo.png'
@@ -46,6 +46,7 @@ const GamePage = () => {
       }
     >
       <SidePar/>
+      <div className="line"><img src={Line}/></div>
         <Header/>
       </div>
       <div className='title'><h1>NEW GAMES</h1></div>

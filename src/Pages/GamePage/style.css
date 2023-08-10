@@ -6,6 +6,22 @@
   background-color: #242323;
   color: white;
 }
+/* .dark .gameParent {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden;
+  background-color: #242323;
+  color: white;
+}
+.light .gameParent  {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden;
+  background-color: white;
+  color: #242323;
+} */
 /* .leftSide {
   width: 39.5%;
   margin-left: -285px;
@@ -84,20 +100,31 @@
 .jenny {
   display: block;
 } */
+.line img {
+  position: absolute;
+  margin: 70px 0 0 5px;
+  height: 85vh;
+} 
 .title {
   display: flex;
   position: absolute;
   margin: -765px 0 0 170px;
   color: rgb(241, 235, 235);
 }
+.slides::-webkit-scrollbar{
+  width: 1rem;
+  height: 1rem;
+}
 .slides {
   display: flex;
   position: relative;
   overflow-x: scroll;
+  overflow-y: hidden;
   margin: -700px 0 0 169px;
   width: 90%;
   height: 295px;
 }
+
 
 .animal,
 .man {

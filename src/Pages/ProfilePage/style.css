@@ -1,0 +1,22 @@
+.col-md-2 {
+    flex: 0 0 25%;
+    /* max-width: 25%; */
+    margin-top: -280px;
+    margin-left: -390px;
+  }
+.line3 img {
+    position: absolute;
+    margin: -710px 0 0 -730px;
+    height: 85vh
+  }
+  .headprof{
+   margin-right: 20px; 
+   margin-top: 700px;
+  }
+  button{
+      padding: '10px 20px';
+      border: 'none';
+      background: '#007bff';
+      color: '#fff';
+      cursor: 'pointer';
+  }

@@ -9,13 +9,16 @@ import Twitter from "../../Images/twitter Logo.png";
 import Linked from "../../Images/linkedin Logo.png";
 import Git from "../../Images/github Logo.png";
 import Signup from "../../Pages/SignupPage";
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "./style.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { AUTH_API } from "../../config/api";
 import { ROLES } from "../../constants";
+import { PATHS } from "../../router/path";
 
 const Login = () => {
+  const navigate = useNavigate()
   const {signup,isLoading }= useAuthContext();
   const [formData,setFormData]=useState({
 username:'',
@@ -27,33 +30,33 @@ repassword:'',
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
   const handleRegisterButtonClick = () => {
-    setRedirectToLogin(true); 
+    navigate(PATHS.SIGNUP)
   };
-  const handleSubmit = async (e)=>{
-    e.preventDefault();
-    signup(formData);
-    try {
+  // const handleSubmit = async (e)=>{
+  //   e.preventDefault();
+  //   signup(formData);
+  //   try {
       
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   /********************************************************** */
 
-//  const handleSubmit = async (e)=>{
-//     e.preventDefault();
-//     if (formData.password===formData.repassword) {
-//       signup({
-//       name : formData.username ,
-//       email :formData.email,
-//       number:formData.number,
-//       password:formData.password
-//     });
-//     }else{
-//       alert ('Passwords do not match')
-//     }
-//     console.log('Submit');
-//   }
+ const handleSubmit = async (e)=>{
+    e.preventDefault();
+    if (formData.password===formData.repassword) {
+      signup({
+      name : formData.username ,
+      email :formData.email,
+      number:formData.number,
+      password:formData.password
+    });
+    }else{
+      alert ('Passwords do not match')
+    }
+    console.log('Submit');
+  }
   // Redirect to Login page if redirectToLogin is true
   if (redirectToLogin) {
     return <Signup />;
@@ -109,7 +112,11 @@ repassword:'',
         </div>
         <div className="Ques">
           <p>Don’t have an account? </p>
-          <button onClick={handleRegisterButtonClick} >Register </button>
+          {/* <Link to={PATHS.SIGNUP}>Register</Link> */}
+          <Link to={PATHS.SIGNUP}>
+          <button>Register</button>
+        </Link>
+          {/* <button onClick={handleRegisterButtonClick} >Register </button> */}
         </div>
       </div>
     </div>

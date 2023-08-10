@@ -12,9 +12,8 @@
 
 .LeftContent img {
   width: 98%;
-  height: 874px;
   object-fit: initial;
-  height: 790px;
+  height: 800px;
   margin-left: -790px;
 }
 
@@ -23,7 +22,7 @@
   background: rgba(21, 101, 216, 1);
   opacity: 0.9;
   width: 20px;
-  height: 863px;
+  height: 875px;
   margin: -72px 120px 0px 0px;
   position: relative;
 }
@@ -90,13 +89,14 @@
 .RightContent2 {
   width: 30%;
   overflow-y: auto;
-  padding: 70px;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-right: 5px;
-  max-height: 100%;
+  margin-right: 2px;
+  max-height: 90%;
+  margin-left: -90px;
   margin-top: 55px;
 }
 .RightContent2 h1 {
@@ -152,6 +152,7 @@
   text-align: left;
   color: rgba(105, 111, 121, 1);
   width: 100%;
+  margin-left: 100px;
 }
 
 .Form2 .NameDev input,
@@ -159,10 +160,11 @@
 .Form2 .PhoneDev input,
 .Form2 .PassWordDev input,
 .Form2 .PassWordRep input {
-  width: 380px;
+  width: 500px;
   height: 50px;
   margin-top: -10px;
   border-radius: 6px;
+  margin-left: 100px;
   border: 1px solid rgba(134, 146, 166, 1);
   padding-left: 10px;
 }
@@ -179,12 +181,13 @@
   flex-direction: row;
   gap: 10px;
   font-family: "Inter";
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 500;
   line-height: 19px;
   text-align: left;
+  margin-left: 100px;
   color: rgba(105, 111, 121, 1);
-  margin: 20px 50px 0px -190px;
+  margin: 20px 50px 0px -90px;
 }
 
 .Form2 .SubButt2 {
@@ -192,12 +195,13 @@
 }
 
 .Form2 .SubButt2 button {
-  width: 103%;
+  width: 500px;
   height: 55px;
   border-radius: 6px;
   border: 1px solid rgba(134, 146, 166, 1);
   background-color: rgb(21, 101, 216);
   color: aliceblue;
+  margin-left: 100px;
   font-weight: bold;
 }
 .Form2 .OR {
@@ -214,6 +218,7 @@
   font-size: 13px;
   line-height: 15px;
   text-align: center;
+  margin-left: -150px;
   color: rgba(186, 186, 186, 1);
 }
 .Form2 .LogButt2 {
@@ -221,19 +226,21 @@
 }
 
 .Form2 .LogButt2 button {
-  width: 103%;
+  width: 500px;
   height: 55px;
   border-radius: 6px;
   background: rgba(255, 255, 255, 1);
   color: rgb(31, 37, 43);
   font-weight: bold;
+  margin-left: 100px;
   box-shadow: 0px 4px 10px 0px rgba(253, 250, 250, 0.08);
 }
 .strenght {
   height: 5px;
   margin-bottom: -15px;
   border: 1px solid rgb(92, 108, 1);
-  width: 387px;
+  width:500px;
+  margin-left: 105px;
 }
 
 .strenght.high {

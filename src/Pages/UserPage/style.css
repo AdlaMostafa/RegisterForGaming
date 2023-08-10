@@ -1,0 +1,38 @@
+.container {
+    width: 100%;
+    height: 100%;
+  }
+  .headuser{
+    margin-top: 600px;
+    margin-right: 20px; 
+  }
+  .headUser Header{
+    position: absolute;
+  }
+  .headUser Header .headText{
+  color: black;
+  }
+  .line2 img {
+    position: absolute;
+    margin: -90px 0 0 -740px;
+    height: 85vh;
+  } 
+  .row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+  }
+  
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    margin-top: -190px;
+    margin-left: -60px;
+  }
+  
+  .col-md-9 {
+    flex: 0 0 75%;
+    display: flex;
+    margin-left: -650px;
+    justify-content: center;
+    max-width: 85%;}
