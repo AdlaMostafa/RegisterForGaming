@@ -7,9 +7,6 @@ export const useAuthContext  = ()=> useContext(AuthContext);
 
 const AuthProvider = ({children})=>{
     const data = useAuth();
-    return <AuthContext.Provider value={data}> 
-                                                  {/**data ===> login,signup,logout,getprofilestate,state*/} 
-            {children}
-    </AuthContext.Provider>
+    return(<AuthContext.Provider value={data}>{children}</AuthContext.Provider>);
 }
 export default AuthProvider
