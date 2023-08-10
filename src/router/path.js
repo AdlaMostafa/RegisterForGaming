@@ -1,11 +1,15 @@
 export const PATHS = {
-  HOME: "/", // Path for the home page
-  PROFILE: "/profile", // Path for the profile page
-  LOGIN: "/auth/login",
-  SIGNUP: "/auth/signup",
+  HOME: "/",
+  LOGIN: "/users/login",
+  SIGNUP: "/users/signup",
+  PROFILE: "/users/profile",
+  USERS: {
+    ROOT: "/users",
+    DELETE: "/users/:id", // Replace :id with the actual user ID when deleting
+  },
   ADMIN: {
     ROOT: "/admin",
-    USERS: "/admin/users",
+    LIST: "/admin/users",
   },
   ERRORS: {
     NOT_FOUND: "/404",

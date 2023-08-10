@@ -1,21 +1,40 @@
 import { Navigate } from 'react-router-dom';
 import AdminGuard from '../components/Guards/AdminGuard';
-import UserGuard from '../components/Guards/UserGaurd';
+import UserGuard from '../components/Guards/UserGuard';
 import GuestGuard from '../components/Guards/GuestGuard';
-import LoginPage from '../Pages/Login';
-import SignUpPage from '../Pages/Signup';
-import HomePage from '../Pages/Home'; // Import the home page component
-import ProfilePage from '../Pages/Profile'; // Import the profile page component
-import { PATHS } from './path';
+import LoginPage from '../Pages/LoginPage';
+import SignUpPage from '../Pages/SignupPage';
+// import HomePage from '../Pages/Home'; // Import the home page component
+import ProfilePage from '../../src/Pages/ProfilePage'; // Import the profile page component
+import { PATHS } from '../router/path';
+import GamePage from '../Pages/GamePage';
+import UserPage from '../Pages/UserPage';
 
-const userPages =  [
+const adminPages = [
   {
-    path: PATHS.HOME,
+    path: PATHS.ADMIN.ROOT,
+    element: <AdminGuard />,
+    children: [
+      {
+        index: true,
+        element: <GamePage />
+      },
+      {
+        path: PATHS.ADMIN.LIST,
+        element: <UserPage />
+      }
+    ]
+  }
+];
+
+const userPages = [
+  {
+    path: PATHS.USERS.ROOT,
     element: <UserGuard />,
     children: [
       {
         index: true,
-        element: <HomePage />, // Render the home page component here
+        element: <GamePage />, // Render the home page component here
       },
       {
         path: PATHS.PROFILE,
@@ -25,7 +44,7 @@ const userPages =  [
   }
 ];
 
-const authPages = [
+const guestPages = [
   {
     path: PATHS.LOGIN,
     element: (
@@ -37,38 +56,21 @@ const authPages = [
   {
     path: PATHS.SIGNUP,
     element: (
-      <GuestGuard>
+      // <GuestGuard>
         <SignUpPage />
-      </GuestGuard>
+      // </GuestGuard>
     )
   }
 ];
 
-const adminPages = [
-  {
-    path: PATHS.ADMIN.ROOT,
-    element: <AdminGuard />,
-    children: [
-      {
-        index: true,
-        element: <h1>Admin</h1>
-      },
-      {
-        path: PATHS.ADMIN.USERS,
-        element: <h1>Users</h1>
-      }
-    ]
-  }
-];
-
-const guestPages = [
-  ...authPages
-];
-
-export const routes = (role) => [
+export const routes = [
   ...guestPages,
   ...adminPages,
   ...userPages,
+  {
+    index: true,
+    element: <GamePage />
+  },
   {
     path: PATHS.ERRORS.NOT_FOUND,
     element: <h1>Page not found 404</h1>
@@ -78,3 +80,122 @@ export const routes = (role) => [
     element: <Navigate to={PATHS.ERRORS.NOT_FOUND} replace={true} />
   }
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { Navigate } from 'react-router-dom';
+// import AdminGuard from '../components/Guards/AdminGuard';
+// import UserGuard from '../components/Guards/UserGuard';
+// import GuestGuard from '../components/Guards/GuestGuard';
+// import LoginPage from '../Pages/LoginPage';
+// import SignUpPage from '../Pages/SignupPage';
+// // import HomePage from '../Pages/Home'; // Import the home page component
+// import ProfilePage from '../../src/Pages/ProfilePage'; // Import the profile page component
+// import { PATHS } from '../router/path';
+// import GamePage from '../Pages/GamePage';
+// import  UserPage  from '../Pages/UserPage';
+
+// const adminPages = [
+//   {
+//     path: PATHS.ADMIN.ROOT,
+//     element: <AdminGuard />,
+//     children: [
+//       {
+//         index: true, 
+//         element: <GamePage/>
+//       },
+//       {
+//         path: PATHS.ADMIN.LIST,
+//         element: <UserPage/>
+//       }
+//     ]
+//   }
+// ];
+
+// const userPages =  [
+//   {
+//     path: PATHS.USERS.ROOT,
+//     element: <UserGuard />,
+//     children: [
+//       {
+//         index: true,
+//         element:<GamePage/>, // Render the home page component here
+//       }
+//       ,
+//       {
+//         path: PATHS.PROFILE,
+//         element: <ProfilePage />, // Render the profile page component here
+//       }
+//     ]
+//   }
+// ];
+
+// const authPages = [
+//   {
+//     path: PATHS.LOGIN,
+//     element: (
+//       <GuestGuard>
+//         <LoginPage />
+//       </GuestGuard>
+//     )
+//   },
+//   {
+//     path: PATHS.SIGNUP,
+//     element: (
+//       <GuestGuard>
+//         <SignUpPage />
+//       </GuestGuard>
+//     )
+//   }
+// ];
+
+// const guestPages = [
+//   {
+//     path: PATHS.LOGIN,
+//     element: (
+//       <GuestGuard>
+//         <LoginPage />
+//       </GuestGuard>
+//     )
+//   },
+//   {
+//     path: PATHS.SIGNUP,
+//     element: (
+//       <GuestGuard>
+//         <SignUpPage />
+//        </GuestGuard>
+//     )
+//   },
+//   ...authPages,
+// ];
+
+
+// export const routes  =   [
+//   ...guestPages,
+//   ...adminPages,
+//   ...userPages,
+//   {
+//     index: true,
+//     // element:<LoginPage/>
+//     element: <GamePage/>
+//   },
+//   {
+//     path: PATHS.ERRORS.NOT_FOUND,
+//     element: <h1>Page not found 404</h1>
+//   },
+//   {
+//     path: "*",
+//     element: <Navigate to={PATHS.ERRORS.NOT_FOUND} replace={true} />
+//   }
+// ];
