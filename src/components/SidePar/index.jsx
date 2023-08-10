@@ -5,14 +5,19 @@ import Setting from "../../Images/Setting.png";
 import Line from "../../Images/leftLine.png";
 import Sun from "../../Images/Sun.png";
 import moon from "../../Images/moon.png";
+import {Link, useNavigate} from 'react-router-dom'
 import Logout from "../../Images/logout.png";
 import { useThemeContext } from "../../contexts/ThemeContext";
+import userPage from '../../Pages/UserPage'
+import { THEMES } from "../../constants";
 import "./style.css";
 import { useAuthContext } from "../../contexts/AuthContext";
+import useAuth from '../../hooks/useAuth';
+import { PATHS } from '../../router/path';
 const SidePar = () => {
-    const {toggleTheme} = useThemeContext();
-  const {logout} = useAuthContext()
-
+    const {theme,toggleTheme} = useThemeContext();
+  const {logout} = useAuth()
+ const navigate = useNavigate()
   const handleLogout = ()=>{
     logout();
   }
@@ -21,9 +26,14 @@ const SidePar = () => {
         <div className="leftSide">
           <div className="leftIcon">
             <div className="plus"><ImageComponent src={plus}/></div>
-            <button className="Setting" >
+            {/* <button className="Setting" >
           <ImageComponent src={Setting} alt="Setting" />
-        </button>
+        </button> */}
+        <div className="Setting">
+  <Link to={userPage}>
+    <ImageComponent src={Setting} alt="Setting" />
+  </Link>
+</div>
            
             <button className="logoutIcon" onClick={handleLogout} >
           <img src={Logout} alt="logout" />
@@ -39,7 +49,7 @@ const SidePar = () => {
             </div>
           </div>
         </div>
-        <div className="line"><ImageComponent src={Line}/></div>
+        {/* <div className="line"><ImageComponent src={Line}/></div> */}
     </div>
   )
 }
