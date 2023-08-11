@@ -6,100 +6,6 @@
   background-color: #242323;
   color: white;
 }
-/* .dark .gameParent {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  overflow-y: hidden;
-  background-color: #242323;
-  color: white;
-}
-.light .gameParent  {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  overflow-y: hidden;
-  background-color: white;
-  color: #242323;
-} */
-/* .leftSide {
-  width: 39.5%;
-  margin-left: -285px;
-}
-.leftIcon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.leftIcon .plus {
-  margin: 40px 0 160px 0px;
-}
-.Setting{
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.leftIcon .logoutIcon img{
-  width: 38px;
- height: 38px;
- margin-left: 5px;
-}
-.leftIcon .logoutIcon {
- background: none;
-  margin-top: 70px;
-  border: none;
-  cursor: pointer;
-}
-.themeIcon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 180px;
-  width: 50px;
-  height: 120px;
-  background-color: #515151;
-  border-radius: 25px;
-}
-.themeIcon .moon {
-  margin: 14px 0 10px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.themeIcon .sun {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.line img {
-  position: absolute;
-  margin: 70px 0 0 -270px;
-  height: 85vh;
-} */
-/* .head {
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 20px 0 0 1080px;
-}
-.head img {
-  width: 60px;
-  height: 60px;
-  margin-left: 40px;
-}
-.headText {
-  margin: 0 -10px 0 17px;
-}
-
-.head .welcome-back {
-  text-align: right;
-  font-size: large;
-  color: white;
-  margin: 5px -15px 0 10px;
-}
-
-.jenny {
-  display: block;
-} */
 .line img {
   position: absolute;
   margin: 70px 0 0 5px;
@@ -115,7 +21,7 @@
   width: 1rem;
   height: 1rem;
 }
-.slides {
+.slides{
   display: flex;
   position: relative;
   overflow-x: scroll;
