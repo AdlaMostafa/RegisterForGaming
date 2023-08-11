@@ -4,14 +4,12 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 import { AUTH_API } from "../../../src/config/api";
 import axios from "axios";
-import { Table_COLUMNS } from "../../constants/info";
 import Line from "../../Images/leftLine.png";
 import "./style.css";
 
 const UserPage = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -38,9 +36,10 @@ const UserPage = () => {
   };
 
   const columns = [
+    {key:'id',title:'Id'},
     { key: 'name', title: 'Name' },
     { key: 'email', title: 'Email' },
-    // Add more columns as needed
+    {key:'password',title:'password'}
   ];
 
   return (
@@ -58,8 +57,9 @@ const UserPage = () => {
         <div className="col-md-9">
           <Table
             columns={columns}
-            users={users}
-            deleteUser={handleDelete}
+            data={users}
+            onDeleteClick={handleDelete}
+            deletingUser={handleDelete}
             isLoading={isLoading}
           />
         </div>
