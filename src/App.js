@@ -5,7 +5,6 @@ import Login from '../src/Pages/LoginPage'
 import GamePage from './Pages/GamePage';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ProfilePage from '../src/Pages/ProfilePage'
-import HomePage from '../src/Pages/HomePage'
 import UserPage from '../src/Pages/UserPage'
 // import { Router } from 'react-router-dom';
 import Router from "./router";
@@ -23,7 +22,6 @@ function App() {
        </div> */}
        {/* <UserPage/> */}
        {/* <AdminPage/> */}
-       {/* <HomePage/> */}
       {/* <SignUp/> */}
        {/* <Login/> */}
        <Router/>
