@@ -15,7 +15,7 @@ const ProfilePage = () => {
   if (!role || role === ROLES.GUEST) {
     navigate(PATHS.LOGIN);
   }else{
-    navigate('/')
+    navigate(PATHS.PROFILE)
   }
 });
 const handleGoHome = () => {
