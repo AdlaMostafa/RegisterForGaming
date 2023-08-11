@@ -1,13 +1,16 @@
 export const AUTH_API_PATHS={
     LOGIN: 'users/login',
     SIGNUP :'users/signup',
-    PROFILE:'users/profile',
+    USER_PROFILE:'users/profile',
+    ADMIN_PROFILE:'admin/profile'
 }
 
 export const AUTH_ACTIONS ={
-    LOGIN:'LOGIN',
-    SIGNUP:'SIGNUP',
+    AUTHORIZE : 'AUTHORIZE',
     LOGOUT:"LOGOUT", 
-    SET_LOADING :null,
-    SET_ERROR:null    
+    SET_LOADING :'SET_LOADING',
+    SET_ERROR:'SET_ERROR'    ,
+    SET_PROFILE :'SET_PROFILE',
+    LIST_USERS :'LIST_USERS',
+    DELETE_USER :'DELETE_USER'
 }
