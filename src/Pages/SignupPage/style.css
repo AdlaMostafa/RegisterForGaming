@@ -11,7 +11,7 @@
 }
 
 .LeftContent img {
-  width: 98%;
+  width: 106%;
   object-fit: initial;
   height: 800px;
   margin-left: -790px;
@@ -240,7 +240,7 @@
   margin-bottom: -15px;
   border: 1px solid rgb(92, 108, 1);
   width:500px;
-  margin-left: 105px;
+  margin-left: -90px;
 }
 
 .strenght.high {
@@ -256,4 +256,7 @@
 .strenght.low {
   width: 99.25px;
   background-color: #f44336;
+}
+.PasswordStrength {
+  font-size: 12px;
 }
