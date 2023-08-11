@@ -2,64 +2,36 @@ import React, { useState } from "react";
 import FormComponent from "../../components/FormComponent";
 import ImageComponent from "../../components/ImageComponent";
 import Logo from "../../Images/BlueLogo.png";
-import Quote from "../../Images/quote.png";
 import Stamp from "../../Images/stamp.png";
 import Google from "../../Images/google icon.png";
 import Twitter from "../../Images/twitter Logo.png";
 import Linked from "../../Images/linkedin Logo.png";
 import Git from "../../Images/github Logo.png";
-import Signup from "../../Pages/SignupPage";
-import { Link, useNavigate } from 'react-router-dom';
-import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import "./style.css";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { AUTH_API } from "../../config/api";
-import { ROLES } from "../../constants";
 import { PATHS } from "../../router/path";
 
 const Login = () => {
   const navigate = useNavigate()
-  const {signup,isLoading }= useAuthContext();
+  const {login,isLoading }= useAuthContext();
   const [formData,setFormData]=useState({
 username:'',
 email:'',
-number:'',
 password:'',
 repassword:'',
   })
-  const [redirectToLogin, setRedirectToLogin] = useState(false);
-
-  const handleRegisterButtonClick = () => {
-    navigate(PATHS.SIGNUP)
-  };
-  // const handleSubmit = async (e)=>{
-  //   e.preventDefault();
-  //   signup(formData);
-  //   try {
-      
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-  /********************************************************** */
-
- const handleSubmit = async (e)=>{
+  const handleSubmit = async (e)=>{
     e.preventDefault();
-    if (formData.password===formData.repassword) {
-      signup({
-      name : formData.username ,
-      email :formData.email,
-      number:formData.number,
+    login({
+      name:formData.username,
+      email:formData.email,
       password:formData.password
-    });
-    }else{
-      alert ('Passwords do not match')
-    }
-    console.log('Submit');
+    })
+    navigate(PATHS.USERS.ROOT)
   }
-  // Redirect to Login page if redirectToLogin is true
-  if (redirectToLogin) {
-    return <Signup />;
+  const handleSignup=()=>{
+    navigate(PATHS.SIGNUP)
   }
 
   return (
@@ -108,19 +80,19 @@ repassword:'',
           <div className="line2"></div>
         </div>
         <div className="FormParent">
-          <FormComponent handleSubmit={handleSubmit} />
+          <FormComponent 
+          handleSubmit={handleSubmit}
+          formData={formData}
+          setFormData={setFormData}
+          isLoading={isLoading}
+          />
         </div>
         <div className="Ques">
           <p>Don’t have an account? </p>
-          {/* <Link to={PATHS.SIGNUP}>Register</Link> */}
-          <Link to={PATHS.SIGNUP}>
-          <button>Register</button>
-        </Link>
-          {/* <button onClick={handleRegisterButtonClick} >Register </button> */}
+          <button onClick={handleSignup}>Register</button>
         </div>
       </div>
     </div>
   );
-
 }
 export default Login;
