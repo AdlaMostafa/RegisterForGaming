@@ -4,8 +4,9 @@ import { ROLES } from '../../constants/index';
 import axios from 'axios';
 import Table from '../../components/Table';
 import "./style.css";
-
-export default function AdminPage() {
+import { PATHS } from '../../router/path';
+import Header from '../../components/Header';
+ const AdminPage =()=> {
   const adminToken = localStorage.getItem("token");
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -30,9 +31,9 @@ export default function AdminPage() {
   useEffect(() => {
     const role = localStorage.getItem('role');
     if (role === ROLES.GUEST || !role) {
-      navigate('/login');
+      navigate(PATHS.LOGIN);
     } else if (role === ROLES.USER) {
-      navigate('/home');
+      navigate('/');
     }
   }, []);
 
@@ -54,15 +55,16 @@ export default function AdminPage() {
   };
 
   const columns = [
+    { key: 'id', title: 'Id' },
     { key: 'name', title: 'Name' },
     { key: 'email', title: 'Email' },
-    // Add more columns as needed
+    { key: 'password', title: 'password' },
   ];
 
   return (
     <div className="adminPage">
       <h1 className="welcome">Welcome to Admin Page</h1>
-
+    {/* <Header/> */}
       {isLoading ? (
         <h1 className="loader">Loading...</h1>
       ) : (
@@ -74,7 +76,8 @@ export default function AdminPage() {
         />
       )}
 
-      <Link to="/home" className="backBut">Back to Home</Link>
+      <Link to="/" className="backBut">Back to Home</Link>
     </div>
   );
 }
+export default AdminPage;
