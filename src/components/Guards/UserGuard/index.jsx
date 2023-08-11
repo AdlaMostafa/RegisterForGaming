@@ -1,29 +1,3 @@
-// import React from 'react';
-// import { useLocation, useNavigate } from 'react-router-dom';
-
-// const UserGuard = ({ children }) => {
-//   const location = useLocation();
-//   const navigate = useNavigate();
-
-//   const userRoutes = {
-//     '/home': true,
-//     '/profile': true,
-//   };
-
-//   const isUserRoute = userRoutes[location.pathname];
-
-//   if (!isUserRoute) {
-//     navigate('/home');
-//   }
-
-//   return <>{children}</>;
-// };
-
-// export default UserGuard;
-
-
-
-
 import React from "react";
 import { Navigate, Outlet} from "react-router-dom";
 import { PATHS } from "../../../router/path";

@@ -1,28 +1,3 @@
-// import React from 'react';
-// import { useLocation, useNavigate } from 'react-router-dom';
-
-// const GuestGuard = ({ children }) => {
-//   const location = useLocation();
-//   const navigate = useNavigate();
-
-//   const guestRoutes = {
-//     '/login': true,
-//     '/signup': true,
-//   };
-
-//   const isGuestRoute = guestRoutes[location.pathname];
-
-//   if (!isGuestRoute) {
-//     navigate('/login');
-//   }
-
-//   return <>{children}</>;
-// };
-
-// export default GuestGuard;
-
-
-
 import React from "react";
 import { Navigate} from "react-router-dom";
 import { PATHS } from "../../../../src/router/path"
