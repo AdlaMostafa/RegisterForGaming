@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
-import ButtonComponent from '../ButtonComponent';
+import React, { useState} from 'react';
 import View from '../../Images/eye.png';
 import Hide from '../../Images/Hide.png';
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom';
-import { PATHS } from '../../router/path';
+import * as yup from 'yup'; 
 
-const FormComponent = () => {
-  const {isLoading} = useAuthContext();
-  const navigate = useNavigate()
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup.string().required('Password is required'),
+});
+
+const FormComponent = ({handleSubmit,isLoading}) => {
+  const {login}= useAuthContext();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    userName: '',
     email: '',
-    phone: '',
     password: '',
     error: '',
     showPassword: false,
   });
-
-  const { userName, email, phone, password, error, showPassword } = formData;
+  const [error,setError]= useState('')
+  const { email, password} = formData;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -34,41 +36,19 @@ const FormComponent = () => {
       showPassword: !prevFormData.showPassword,
     }));
   };
-
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    // Check if all fields are completed
-    if (!password || !userName || !email || !phone) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        error: 'Please complete all fields',
-      }));
-      return;
+    try {
+      await schema.validate(formData, { abortEarly: false }); 
+      await login(formData.email,formData.password);
+      navigate('/')
     }
-
-    // Clear error state if validation passes
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      error: '',
-    }));
-    navigate("/")
-  };
-
+  catch (validationError) {
+    setError('Please Fix the errors in the form')
+  
+  }}
   return (
     <form action='' onSubmit={handleFormSubmit}>
-      <div className='NameDev'>
-        <label htmlFor='name'>Your Name</label>
-        <input
-          required
-          type='text'
-          id='name'
-          name='userName'
-          placeholder='Write your name'
-          value={userName}
-          onChange={handleInputChange}
-        />
-      </div>
       <div className='EmailDev'>
         <label htmlFor='email'>Your Email</label>
         <input
@@ -82,23 +62,11 @@ const FormComponent = () => {
         />
       </div>
 
-      <div className='PhoneDev'>
-        <label htmlFor='phone'>Your Phone Number</label>
-        <input
-          required
-          type='text'
-          id='phone'
-          name='phone'
-          placeholder='Write your phone number'
-          value={phone}
-          onChange={handleInputChange}
-        />
-      </div>
       <div className='PassWordDev'>
         <label htmlFor='password'>Your Password</label>
         <input
           required
-          type={showPassword ? 'text' : 'password'}
+          type={formData.showPassword ? 'text' : 'password'}
           id='password'
           name='password'
           placeholder='Write your password'
@@ -106,17 +74,15 @@ const FormComponent = () => {
           onChange={handleInputChange}
         />
         <img
-          src={showPassword ? Hide : View}
-          alt={showPassword ? 'Hide' : 'View'}
+          src={formData.showPassword ? Hide : View}
+          alt={formData.showPassword ? 'Hide' : 'View'}
           className='password-toggle'
           onClick={togglePasswordVisibility}
         />
       </div>
 
       <div className='SubButt'>
-        <button  type='submit'
-        >{ isLoading ? 'Loading ...':'Login' }</button>
-        {/* <ButtonComponent text={ isLoading ? 'Loading ...':'Login' } type='submit' /> */}
+        <button type='submit' >{isLoading ? 'Loading ...' : 'Login'}</button>
       </div>
       {error && <p className='Error' style={{ color: 'red', marginLeft: '-2px' }}>{error}</p>}
     </form>
@@ -125,142 +91,3 @@ const FormComponent = () => {
 
 export default FormComponent;
 
-// import React, { useState } from 'react';
-// import ButtonComponent from '../ButtonComponent';
-// import View from '../../Images/eye.png';
-// import Hide from '../../Images/Hide.png';
-// import { useAuthContext } from "../../contexts/AuthContext";
-// import { useNavigate } from 'react-router-dom';
-// import { PATHS } from '../../router/path';
-// import * as yup from 'yup'; // Import yup
-
-// const schema = yup.object().shape({
-//   userName: yup.string().required('Your Name is required'),
-//   email: yup.string().email('Invalid email').required('Email is required'),
-//   phone: yup.string().required('Phone Number is required'),
-//   password: yup.string().required('Password is required'),
-// });
-
-// const FormComponent = () => {
-//   const { isLoading } = useAuthContext();
-//   const navigate = useNavigate();
-//   const [formData, setFormData] = useState({
-//     userName: '',
-//     email: '',
-//     phone: '',
-//     password: '',
-//     error: '',
-//     showPassword: false,
-//   });
-
-//   const { userName, email, phone, password, error, showPassword } = formData;
-
-//   const handleInputChange = (event) => {
-//     const { name, value } = event.target;
-//     setFormData((prevFormData) => ({
-//       ...prevFormData,
-//       [name]: value,
-//     }));
-//   };
-
-//   const togglePasswordVisibility = () => {
-//     setFormData((prevFormData) => ({
-//       ...prevFormData,
-//       showPassword: !prevFormData.showPassword,
-//     }));
-//   };
-
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-
-//     try {
-//       await schema.validate(formData, { abortEarly: false }); // Validate using yup schema
-
-//       setFormData((prevFormData) => ({
-//         ...prevFormData,
-//         error: '',
-//       }));
-
-//       navigate(PATHS.HOME);
-//     } catch (validationError) {
-//       const validationErrors = validationError.inner.reduce((errors, error) => {
-//         errors[error.path] = error.message;
-//         return errors;
-//       }, {});
-
-//       setFormData((prevFormData) => ({
-//         ...prevFormData,
-//         error: 'Please fix the errors in the form',
-//         ...validationErrors,
-//       }));
-//     }
-//     // navigate(PATHS.HOME);
-//   };
-
-//   return (
-//     <form action='' onSubmit={handleFormSubmit}>
-//       <div className='NameDev'>
-//         <label htmlFor='name'>Your Name</label>
-//         <input
-//           required
-//           type='text'
-//           id='name'
-//           name='userName'
-//           placeholder='Write your name'
-//           value={userName}
-//           onChange={handleInputChange}
-//         />
-//       </div>
-//       <div className='EmailDev'>
-//         <label htmlFor='email'>Your Email</label>
-//         <input
-//           required
-//           type='email'
-//           id='email'
-//           name='email'
-//           placeholder='Write your email'
-//           value={email}
-//           onChange={handleInputChange}
-//         />
-//       </div>
-
-//       <div className='PhoneDev'>
-//         <label htmlFor='phone'>Your Phone Number</label>
-//         <input
-//           required
-//           type='text'
-//           id='phone'
-//           name='phone'
-//           placeholder='Write your phone number'
-//           value={phone}
-//           onChange={handleInputChange}
-//         />
-//       </div>
-//       <div className='PassWordDev'>
-//         <label htmlFor='password'>Your Password</label>
-//         <input
-//           required
-//           type={showPassword ? 'text' : 'password'}
-//           id='password'
-//           name='password'
-//           placeholder='Write your password'
-//           value={password}
-//           onChange={handleInputChange}
-//         />
-//         <img
-//           src={showPassword ? Hide : View}
-//           alt={showPassword ? 'Hide' : 'View'}
-//           className='password-toggle'
-//           onClick={togglePasswordVisibility}
-//         />
-//       </div>
-
-//       <div className='SubButt'>
-//         <button type='submit'>{isLoading ? 'Loading ...' : 'Login'}</button>
-//       </div>
-//       {error && <p className='Error' style={{ color: 'red', marginLeft: '-2px' }}>{error}</p>}
-//     </form>
-//   );
-// };
-
-// export default FormComponent;
