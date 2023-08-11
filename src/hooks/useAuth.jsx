@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { ROLES } from "../constants/index";
 import { AUTH_ACTIONS, AUTH_API_PATHS } from "../constants/auth";
 import {AUTH_API} from '../config/api'
@@ -21,20 +21,22 @@ const reduce = (state, action) => {
         isLoading: true,
       }
 
-      case AUTH_ACTIONS.LOGIN:
-        const token = action.payload?.token || state?.token;
-        const isAdmin = action.payload?.isAdmin || false; 
-        const role = isAdmin ? ROLES.ADMIN : ROLES.USER;
-
+      case AUTH_ACTIONS.AUTHORIZE:
+        const token = action?.payload?.token || state?.token;
+        // const isAdmin = action.payload?.isAdmin || false; 
+        const role = action?.payload?.isAdmin ? ROLES.ADMIN : ROLES.USER;
         localStorage.setItem("token", token);
         localStorage.setItem("role", role);
+        localStorage.setItem("user",JSON.stringify(action.payload.user))
       
         return {
           ...state,
           isAuth: true,
+          user:action.payload.user,
           token: token,
           role: role,
           error: null,
+          data:action?.payload,
           isLoading: false,
         };
       
@@ -55,36 +57,33 @@ const reduce = (state, action) => {
 };
 const useAuth = () => {
   const [state, dispatch] = useReducer(reduce, initialState);
-  const navigate = useNavigate('');
-//   const token = state.token || localStorage.getItem('token')
-//   const config ={
-//     headers:{
-//         Authorization:`Bearer ${token}`,
-// },
-//   }
+  const token = state.token || localStorage.getItem('token')
+  const [users,setUsers]=useState([]);
+  const [error,setError]= useState(null);
+  const[isLoading,setIsLoading] =useState(false);
+  const [delet,setDeletUser] = useState(null);
+  const config ={
+    headers:{
+        Authorization:`Bearer ${token}`,
+},
+  }
 
 const login = async (body) => {
   dispatch({ type: AUTH_ACTIONS.SET_LOADING });
   try {
     const { data } = await axios.post(AUTH_API + AUTH_API_PATHS.LOGIN, body);
-    let username = data.name;
-    let id= data._id;
-    localStorage.setItem("name",username);
-    localStorage.setItem("id",id);
-
-    navigate("/")
-    dispatch({ type: AUTH_ACTIONS.LOGIN, payload: data });
+    localStorage.setItem("token",data?.data.token)
+    dispatch({ type: AUTH_ACTIONS.AUTHORIZE, payload: data?.data||data });
   } catch (error) {
     dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
-    alert("you have entered a wrong password or email!");
   }
 };
 
    const signup = async (body) =>{//body heere == email , password
     dispatch({type:AUTH_ACTIONS.SET_LOADING});
    try {
-    const {data} = await axios.post(AUTH_API+AUTH_API_PATHS.SIGNUP,body)//اسمه اللي موجود في الconfig
-    dispatch({type:AUTH_ACTIONS.LOGIN,payload:data?.data||data})
+    const {data} = await axios.post(AUTH_API+AUTH_API_PATHS.SIGNUP,body)//اسمه اللي موجود في الconfig    
+    dispatch({type:AUTH_ACTIONS.AUTHORIZE,payload:data?.data||data})
    } catch (error) {
     dispatch({type:AUTH_ACTIONS.SET_ERROR,payload:error.message});
    }
@@ -93,27 +92,62 @@ const login = async (body) => {
     dispatch({ type :  AUTH_ACTIONS.LOGOUT });
 
 };
-const getProfileData = async ()=>{
-  dispatch({type:AUTH_ACTIONS.SET_LOADING});    
+const getProfileData = async () => { 
+  dispatch({ type: AUTH_ACTIONS.SET_LOADING }); 
+  try { 
+      const apiPath = state.role===ROLES.ADMIN ? AUTH_API_PATHS.ADMIN_PROFILE : AUTH_API_PATHS.USER_PROFILE; 
+      const { data } = await axios.get(AUTH_API + apiPath, config); 
+      const actionType = state.role===ROLES.ADMIN ? AUTH_ACTIONS.AUTHORIZE: AUTH_ACTIONS.AUTHORIZE; 
+      dispatch({ type: actionType, payload: data?.data || data  }); 
 
-  try {
-      const token =  state.token ||localStorage.getItem("token");
-      const {data}= await axios.get(AUTH_API+AUTH_API_PATHS.PROFILE,{
-          headers:{
-              "Authorization":`Bearer ${token}`
-          }
-      });
-      dispatch({type:AUTH_ACTIONS.LOGIN,payload:data?.data || data });    
-  } catch (error) {
+  } catch (error) { 
+      dispatch({ type:AUTH_ACTIONS.SET_ERROR, payload: error.message }); 
+    } 
 
-      dispatch({type:AUTH_ACTIONS.SET_ERROR,payload:error.message});          
-  }
-}  
-return{
-    ...state,
-    login,
-    signup,
-    logout,
-    getProfileData
-}}
+} 
+
+const listUsers = async () => { 
+               setIsLoading(true); 
+    try { 
+       const res = await axios.get("https://react-tt-api.onrender.com/api/users", 
+             { 
+            headers:  { Authorization: `Bearer ${token}`}}) 
+        setUsers(res.data.users); 
+    } catch (error) { 
+        setError(error) 
+    }finally { 
+            setIsLoading(false) 
+        } 
+} 
+    const Delete = async (userId) => { 
+            const confirmDelete = window.confirm("Are you sure you want to delete this user?"); 
+            if (confirmDelete) { 
+              setDeletUser(userId); 
+              try { 
+           await axios.delete(AUTH_API+AUTH_API_PATHS.DELETE_USER +`${userId}`, config ); 
+                setUsers(prevUsers => prevUsers.filter(user => user._id !== userId)); 
+              } catch (error) { 
+                console.log(error); 
+              } finally { 
+                setDeletUser(null); 
+              } 
+            } 
+          }; 
+          console.log(state)
+return { 
+    ...state, 
+    login, 
+    signup, 
+    getProfileData, 
+    listUsers, 
+    logout, 
+    users, 
+    error, 
+    isLoading, 
+    delet, 
+    Delete 
+} 
+
+
+}; 
 export default useAuth;
