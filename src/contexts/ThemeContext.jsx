@@ -10,7 +10,7 @@ export const ThemeProvider = ({children})=>{
         ()=>localStorage.getItem("theme")||THEMES.LIGHT)//اول ما يعمل استدعاء للكمبوننت بده يروح على الذاكرة ياخد اللي فيها كبداية
     const toggleTheme = ()=>{
         setTheme((prevState)=> prevState === THEMES.DARK? THEMES.LIGHT : THEMES.DARK
-        )
+        ) 
     }
     useEffect(()=>{
         localStorage.setItem("theme",theme);
