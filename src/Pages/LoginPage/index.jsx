@@ -7,17 +7,17 @@ import Google from "../../Images/google icon.png";
 import Twitter from "../../Images/twitter Logo.png";
 import Linked from "../../Images/linkedin Logo.png";
 import Git from "../../Images/github Logo.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { PATHS } from "../../router/path";
 
 const Login = () => {
-  const navigate = useNavigate()
-  const {isLoading }= useAuthContext();
-  const handleSignup=()=>{
-    navigate(PATHS.SIGNUP)
-  }
+  const navigate = useNavigate();
+  const { isLoading } = useAuthContext();
+  const handleSignup = () => {
+    navigate(PATHS.SIGNUP);
+  };
 
   return (
     <div className="Parent">
@@ -65,9 +65,7 @@ const Login = () => {
           <div className="line2"></div>
         </div>
         <div className="FormParent">
-          <FormComponent
-          isLoading={isLoading}
-          />
+          <FormComponent isLoading={isLoading} />
         </div>
         <div className="Ques">
           <p>Don’t have an account? </p>
@@ -76,5 +74,5 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 export default Login;
