@@ -20,7 +20,6 @@ const UserPage = () => {
       setUsers(data);
       setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
       console.log(error);
     }
   };
@@ -36,10 +35,10 @@ const UserPage = () => {
   };
 
   const columns = [
-    {key:'id',title:'Id'},
-    { key: 'name', title: 'Name' },
-    { key: 'email', title: 'Email' },
-    {key:'password',title:'password'}
+    { key: "id", title: "Id" },
+    { key: "name", title: "Name" },
+    { key: "email", title: "Email" },
+    { key: "password", title: "password" },
   ];
 
   return (

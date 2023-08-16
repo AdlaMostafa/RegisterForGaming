@@ -14,22 +14,7 @@ import { PATHS } from "../../router/path";
 
 const Login = () => {
   const navigate = useNavigate()
-  const {login,isLoading }= useAuthContext();
-  const [formData,setFormData]=useState({
-username:'',
-email:'',
-password:'',
-repassword:'',
-  })
-  const handleSubmit = async (e)=>{
-    e.preventDefault();
-    login({
-      name:formData.username,
-      email:formData.email,
-      password:formData.password
-    })
-    navigate(PATHS.USERS.ROOT)
-  }
+  const {isLoading }= useAuthContext();
   const handleSignup=()=>{
     navigate(PATHS.SIGNUP)
   }
@@ -80,10 +65,7 @@ repassword:'',
           <div className="line2"></div>
         </div>
         <div className="FormParent">
-          <FormComponent 
-          handleSubmit={handleSubmit}
-          formData={formData}
-          setFormData={setFormData}
+          <FormComponent
           isLoading={isLoading}
           />
         </div>
