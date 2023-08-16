@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const Table = ({ columns, deleteUser, isLoading }) => {
   const [deletingUser, setDeletingUser] = useState(null);
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const Table = ({ columns, deleteUser, isLoading }) => {
         {!isLoading && (
           <tbody>
             {data.map((row) => (
-              <tr key={row.id} onClick={() => deleteUser(row._id)}>
+              <tr key={row.id} onClick={() => deleteUser(row.id)}>
                 {columns.map((column) => (
                   <td key={`${row.id + column.key}`}>
                     {column.render ? column.render(row) : row[column.key]}
@@ -40,13 +39,13 @@ const Table = ({ columns, deleteUser, isLoading }) => {
                 ))}
 
                 <td>
-                  {deletingUser === row._id ? (
+                  {deletingUser === row.id ? (
                     <div className="loader">Deleting...</div>
                   ) : (
                     <button
                       className='deleteButton'
-                      disabled={deletingUser === row._id}
-                      onClick={() => setDeletingUser(row._id)}
+                      disabled={deletingUser === row.id}
+                      onClick={() => setDeletingUser(row.id)}
                     >
                       Delete
                     </button>

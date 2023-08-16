@@ -6,7 +6,8 @@ import { ROLES } from "../../../constants";
 
 const UserGuard = () =>{
     const {role} = useAuthContext();
-    if (role === ROLES.USER|| role===ROLES.ADMIN) return <Outlet/>;//Outlet هو عبارة عن placeholder  بييجي مكانه متغير
-    return <Navigate to={PATHS.LOGIN} replace={true}/>
+    if (role === ROLES.USER) return <Outlet/>;
+    //Outlet هو عبارة عن placeholder  بييجي مكانه متغير
+    return <Navigate to={PATHS.HOME} replace={true}/>
 };
 export default UserGuard;

@@ -2,22 +2,19 @@ import React from 'react'
 import ImageComponent from '../ImageComponent'
 import plus from "../../Images/plus.png";
 import Setting from "../../Images/Setting.png";
-import Line from "../../Images/leftLine.png";
 import Sun from "../../Images/Sun.png";
 import moon from "../../Images/moon.png";
-import {Link, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import Logout from "../../Images/logout.png";
 import { useThemeContext } from "../../contexts/ThemeContext";
-import userPage from '../../Pages/UserPage'
-import { THEMES } from "../../constants";
 import "./style.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 import useAuth from '../../hooks/useAuth';
 import { PATHS } from '../../router/path';
-import AdminGuard from '../Guards/AdminGuard';
-import AdminPage from '../../Pages/AdminPage';
+import { ROLES } from '../../constants';
 const SidePar = () => {
-    const {theme,toggleTheme} = useThemeContext();
+  const {role} = useAuthContext();
+    const {toggleTheme} = useThemeContext();
   const {logout} = useAuth()
  const navigate = useNavigate()
   const handleLogout = ()=>{
@@ -31,10 +28,11 @@ const SidePar = () => {
         <div className="leftSide">
           <div className="leftIcon">
             <div className="plus"><ImageComponent src={plus}/></div>
-            
+            { role === ROLES.ADMIN && (
             <button className="Setting" onClick={handleSetting} >
           <ImageComponent src={Setting} alt="Setting" />
-        </button>
+          </button>
+          )}
           <button className="logoutIcon" onClick={handleLogout} >
           <img src={Logout} alt="logout" />
         </button>
