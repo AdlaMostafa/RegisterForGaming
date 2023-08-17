@@ -5,7 +5,6 @@ import axios from 'axios';
 import Table from '../../components/Table';
 import "./style.css";
 import { PATHS } from '../../router/path';
-import Header from '../../components/Header';
  const AdminPage =()=> {
   const adminToken = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ import Header from '../../components/Header';
     } else if (role === ROLES.USER) {
       navigate('/');
     }
-  }, []);
+  });
 
   const deleteUser = async (userId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
@@ -64,7 +63,6 @@ import Header from '../../components/Header';
   return (
     <div className="adminPage">
       <h1 className="welcome">Welcome to Admin Page</h1>
-    {/* <Header/> */}
       {isLoading ? (
         <h1 className="loader">Loading...</h1>
       ) : (
