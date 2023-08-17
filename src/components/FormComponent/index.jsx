@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import View from "../../Images/eye.png";
 import Hide from "../../Images/Hide.png";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { PATHS } from "../../router/path";
-import GamePage from "../../Pages/GamePage";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -39,17 +37,13 @@ const FormComponent = ({ isLoading }) => {
       showPassword: !prevFormData.showPassword,
     }));
   };
-  useEffect(() => {
-    if (formData.isAuth) {
-      navigate(PATHS.ADMIN.ROOT); // Navigate to the Game Page
-    }
-  }, [formData.isAuth]);
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       await schema.validate(formData, { abortEarly: false });
       login(formData);
-      navigate(PATHS.ADMIN.ROOT);
+      navigate("/");
     } catch (validationError) {
       setError("Please Fix the errors in the form");
     }
