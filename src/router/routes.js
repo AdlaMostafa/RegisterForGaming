@@ -20,6 +20,10 @@ const adminPages = [
         element: <GamePage />,
       },
       {
+        path: PATHS.ADMIN.PROFILE,
+        element: <ProfilePage />,
+      },
+      {
         path: PATHS.ADMIN.LIST,
         element: <AdminPage />,
       },
@@ -48,17 +52,17 @@ const guestPages = [
   {
     path: PATHS.LOGIN,
     element: (
-      <GuestGuard>
-        <LoginPage />
-      </GuestGuard>
+      // <GuestGuard>
+      <LoginPage />
+      // </GuestGuard>
     ),
   },
   {
     path: PATHS.SIGNUP,
     element: (
-      <GuestGuard>
-        <SignUpPage />
-      </GuestGuard>
+      // <GuestGuard>
+      <SignUpPage />
+      // </GuestGuard>
     ),
   },
 ];
