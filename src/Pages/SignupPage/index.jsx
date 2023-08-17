@@ -19,7 +19,7 @@ const schema = yup.object().shape({
   repeatPassword: yup
     .string()
     .required()
-    .oneOf([yup.ref("password")]),
+    .oneOf([yup.ref("password")],'Password and repassword not match'),
   agreeTerms: yup.boolean().required(),
 });
 
@@ -249,7 +249,7 @@ const Signup = () => {
             </div>
             {/* Error message */}
             {error && (
-              <p className="Error" style={{ color: "red", marginLeft: "-2px" }}>
+              <p className="Error" style={{ color: "red" , margin :0}}>
                 {error}
               </p>
             )}
